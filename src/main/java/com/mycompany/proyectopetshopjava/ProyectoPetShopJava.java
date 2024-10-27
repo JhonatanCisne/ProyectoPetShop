@@ -9,6 +9,6 @@ package com.mycompany.proyectopetshopjava;
 public class ProyectoPetShopJava {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("HOAL MUNDO!");
     }
 }

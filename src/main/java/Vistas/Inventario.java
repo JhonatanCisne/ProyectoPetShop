@@ -165,3 +165,4 @@ public class Inventario extends javax.swing.JPanel {
     private java.awt.MenuBar menuBar4;
     // End of variables declaration//GEN-END:variables
 }
+

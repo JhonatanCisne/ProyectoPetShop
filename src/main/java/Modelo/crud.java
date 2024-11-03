@@ -9,7 +9,7 @@ public class crud {
 String ConexionUrI = "jdbc:sqlserver://localhost:1433;databaseName=PetShop;user=AdministradorInventario;password=941036617xd;loginTimeout=30;TrustServerCertificate=True;";
        try{
     Connection con =DriverManager. getConnection (ConexionUrI) ;
-           System.out.println("Conectado");
+           System.out.println("SQL Conectado");
     return con;
     } catch (SQLException ex) {
     System. out.println (ex.toString ( ) ) ;

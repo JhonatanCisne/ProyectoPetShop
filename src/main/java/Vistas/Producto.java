@@ -40,61 +40,44 @@ public class Producto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1150, 620));
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
         content12.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel61.setBackground(new java.awt.Color(0, 0, 0));
         jLabel61.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel61.setForeground(new java.awt.Color(0, 0, 0));
         jLabel61.setText("Nombre:");
 
         jLabel62.setBackground(new java.awt.Color(0, 0, 0));
         jLabel62.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel62.setForeground(new java.awt.Color(0, 0, 0));
         jLabel62.setText("Medida:");
 
         jLabel63.setBackground(new java.awt.Color(0, 0, 0));
         jLabel63.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel64.setBackground(new java.awt.Color(0, 0, 0));
         jLabel64.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel64.setForeground(new java.awt.Color(0, 0, 0));
         jLabel64.setText("Cantidad");
 
         jLabel65.setBackground(new java.awt.Color(0, 0, 0));
         jLabel65.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel65.setForeground(new java.awt.Color(0, 0, 0));
         jLabel65.setText("Precio:");
 
         jButton27.setBackground(new java.awt.Color(204, 255, 255));
         jButton27.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jButton27.setForeground(new java.awt.Color(0, 0, 0));
         jButton27.setText("ELIMINAR");
 
         jButton28.setBackground(new java.awt.Color(204, 255, 255));
         jButton28.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jButton28.setForeground(new java.awt.Color(0, 0, 0));
         jButton28.setText("AGREGAR");
 
-        jTextField34.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField34.setForeground(new java.awt.Color(0, 0, 0));
         jTextField34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField34ActionPerformed(evt);
             }
         });
 
-        jComboBox12.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox12.setForeground(new java.awt.Color(0, 0, 0));
         jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTextField35.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField35.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField36.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField36.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout content12Layout = new javax.swing.GroupLayout(content12);
         content12.setLayout(content12Layout);
@@ -115,7 +98,7 @@ public class Producto extends javax.swing.JFrame {
                             .addComponent(jLabel62)
                             .addComponent(jLabel64)
                             .addComponent(jLabel65))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
                         .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,16 +173,18 @@ public class Producto extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addComponent(jButton2)
                         .addGap(14, 14, 14)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(content12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(content12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

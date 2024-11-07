@@ -2,26 +2,14 @@ package Controlador;
 
 public class Objetos {
     public String nombre;
-    public String tipo;
     public String medida;
     public int cantidad;
     public double precio;
     
-    
-    public void insertarNombre(String nombre){
-        this.nombre=nombre;
+public Objetos(String nombre, String medida, int cantidad, double precio){
+    this.nombre=nombre;
+    this.medida=medida;
+    this.cantidad=cantidad;
+    this.precio=precio;
     }
-    
-    public void insertarMedida(String medida){
-        this.medida=medida;
-    }
-    
-    public void insertarCantidad(int cantidad){
-        this.cantidad=cantidad;
-    }
-    
-    public void insertarPrecio(double precio){
-        this.precio=precio;
-    }
-    
 }

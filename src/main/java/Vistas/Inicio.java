@@ -4,6 +4,14 @@
  */
 package Vistas;
 
+import Controlador.Usuario;
+import Modelo.crud;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 public class Inicio extends javax.swing.JFrame {
 
     /**
@@ -29,7 +37,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         ingresarUsuario = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        ingresarContraseña = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
@@ -66,7 +74,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setBorder(null);
+        ingresarContraseña.setBorder(null);
 
         jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -109,7 +117,7 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(ingresarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ingresarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(usuarioLayout.createSequentialGroup()
                         .addGap(153, 153, 153)
                         .addComponent(jButton1)))
@@ -129,7 +137,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ingresarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -140,8 +148,6 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 440, 500));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Logo.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Gilroy-Bold", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -199,10 +205,33 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-   AgregarEliminar productos = new AgregarEliminar();
-    productos.setVisible(true);
-    this.dispose();
-    productos.setLocationRelativeTo(null);  
+        
+    String usuarioingreso = ingresarUsuario.getText();
+    char[] passwordChars = ingresarContraseña.getPassword();
+    String contraseña = new String(passwordChars);
+    
+    Connection con = crud.getConexion(); 
+    Usuario usuarioObjeto = new Usuario(usuarioingreso, contraseña);
+    
+    String sql = "SELECT * FROM administrador WHERE nombre = ? AND contraseña = ?";
+    try (PreparedStatement stmt = con.prepareStatement(sql)) {
+        stmt.setString(1, usuarioObjeto.getUsuario());
+        stmt.setString(2, usuarioObjeto.getContraseña());
+        usuarioObjeto.mostrar();
+        
+        ResultSet rs = stmt.executeQuery();
+        
+        if (rs.next()) {
+            AgregarEliminar productos = new AgregarEliminar();
+            productos.setVisible(true);
+            this.dispose();
+            productos.setLocationRelativeTo(null);
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error de conexión: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
@@ -219,6 +248,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField ingresarContraseña;
     private javax.swing.JTextField ingresarUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -229,7 +259,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;

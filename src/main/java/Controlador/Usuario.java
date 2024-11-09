@@ -18,6 +18,6 @@ public class Usuario {
     }
     
     public void mostrar(){
-        System.out.println(usuario+", "+contraseña);
+        System.out.println(usuario+",, "+contraseña);
     }
 }

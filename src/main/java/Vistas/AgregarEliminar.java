@@ -8,8 +8,9 @@ import java.sql.SQLException;
 
 
 
-public class Eliminar extends javax.swing.JFrame {
-    public Eliminar() {
+public class AgregarEliminar extends javax.swing.JFrame {
+        private ListaEnlazada lista = new ListaEnlazada();
+    public AgregarEliminar() {
         initComponents();
     }
 
@@ -23,13 +24,14 @@ public class Eliminar extends javax.swing.JFrame {
         jLabel61 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
         jLabel64 = new javax.swing.JLabel();
-        botonEliminar = new javax.swing.JButton();
+        modificarEliminar = new javax.swing.JButton();
         eliminarNombre = new javax.swing.JTextField();
         eliminarCantidad = new javax.swing.JTextField();
+        modificarGuardar = new javax.swing.JButton();
+        modificarAgregar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,12 +52,12 @@ public class Eliminar extends javax.swing.JFrame {
         jLabel64.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel64.setText("Cantidad");
 
-        botonEliminar.setBackground(new java.awt.Color(204, 255, 255));
-        botonEliminar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        botonEliminar.setText("ELIMINAR");
-        botonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+        modificarEliminar.setBackground(new java.awt.Color(204, 255, 255));
+        modificarEliminar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        modificarEliminar.setText("ELIMINAR");
+        modificarEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonEliminarMouseClicked(evt);
+                modificarEliminarMouseClicked(evt);
             }
         });
 
@@ -70,6 +72,19 @@ public class Eliminar extends javax.swing.JFrame {
                 eliminarCantidadActionPerformed(evt);
             }
         });
+
+        modificarGuardar.setText("jButton6");
+        modificarGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificarGuardarMouseClicked(evt);
+            }
+        });
+
+        modificarAgregar.setBackground(new java.awt.Color(0, 153, 153));
+        modificarAgregar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        modificarAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        modificarAgregar.setText("Agregar");
+        modificarAgregar.setBorderPainted(false);
 
         javax.swing.GroupLayout content12Layout = new javax.swing.GroupLayout(content12);
         content12.setLayout(content12Layout);
@@ -88,9 +103,13 @@ public class Eliminar extends javax.swing.JFrame {
                     .addComponent(eliminarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(166, 166, 166))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonEliminar)
-                .addGap(340, 340, 340))
+                .addGap(88, 88, 88)
+                .addComponent(modificarEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(modificarAgregar)
+                .addGap(114, 114, 114)
+                .addComponent(modificarGuardar)
+                .addGap(158, 158, 158))
         );
         content12Layout.setVerticalGroup(
             content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +131,10 @@ public class Eliminar extends javax.swing.JFrame {
                             .addComponent(jLabel64)
                             .addComponent(eliminarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
-                        .addComponent(botonEliminar)
+                        .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(modificarEliminar)
+                            .addComponent(modificarGuardar)
+                            .addComponent(modificarAgregar))
                         .addGap(91, 91, 91))))
         );
 
@@ -149,17 +171,16 @@ public class Eliminar extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Agregar");
-        jButton4.setBorderPainted(false);
-
         jButton5.setBackground(new java.awt.Color(0, 153, 153));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Eliminar");
+        jButton5.setText("Agregar/Eliminar");
         jButton5.setBorderPainted(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,16 +188,14 @@ public class Eliminar extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(294, 294, 294)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(content12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -188,7 +207,6 @@ public class Eliminar extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton1)
-                    .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -224,14 +242,47 @@ public class Eliminar extends javax.swing.JFrame {
 
     private void eliminarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCantidadActionPerformed
     }//GEN-LAST:event_eliminarCantidadActionPerformed
-
-    private void botonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseClicked
-    
-    }//GEN-LAST:event_botonEliminarMouseClicked
-            
+       
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void modificarGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarGuardarMouseClicked
+                Connection con = crud.getConexion();  
+        if (con != null) {
+            lista.ejecutarInstrucciones(con); 
+            JOptionPane.showMessageDialog(this, "Se elimino "+eliminarCantidad+" "+eliminarNombre+"s", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        lista = null;
+
+        lista = new ListaEnlazada();
+    }//GEN-LAST:event_modificarGuardarMouseClicked
+
+    private void modificarEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarEliminarMouseClicked
+    String nombre = eliminarNombre.getText().trim();
+    
+    if (!nombre.isEmpty()) {
+        try {
+            int cantidad = Integer.parseInt(eliminarCantidad.getText());
+            
+            if (cantidad <= 0) {
+                JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Ingrese el nombre del producto", "Error", JOptionPane.ERROR_MESSAGE);
+    } 
+    }//GEN-LAST:event_modificarEliminarMouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,38 +301,41 @@ public class Eliminar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Eliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Eliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Eliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Eliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Eliminar().setVisible(true);
+                new AgregarEliminar().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton botonEliminar;
     private javax.swing.JPanel content12;
     public javax.swing.JTextField eliminarCantidad;
     public javax.swing.JTextField eliminarNombre;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton modificarAgregar;
+    public javax.swing.JButton modificarEliminar;
+    private javax.swing.JButton modificarGuardar;
     // End of variables declaration//GEN-END:variables
 }

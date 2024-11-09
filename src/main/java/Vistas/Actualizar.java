@@ -27,6 +27,7 @@ public class Actualizar extends javax.swing.JFrame {
         botonAgregar = new javax.swing.JButton();
         actualizarNombre = new javax.swing.JTextField();
         actualizarPrecio = new javax.swing.JTextField();
+        botonActualizar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -77,26 +78,38 @@ public class Actualizar extends javax.swing.JFrame {
             }
         });
 
+        botonActualizar.setText("jButton6");
+        botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonActualizarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout content12Layout = new javax.swing.GroupLayout(content12);
         content12.setLayout(content12Layout);
         content12Layout.setHorizontalGroup(
             content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(content12Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel63)
-                .addGap(63, 63, 63)
-                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel61)
-                    .addComponent(jLabel64))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
-                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(actualizarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(actualizarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(166, 166, 166))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonAgregar)
                 .addGap(341, 341, 341))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
+                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(content12Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonActualizar))
+                    .addGroup(content12Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel63)
+                        .addGap(63, 63, 63)
+                        .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel61)
+                            .addComponent(jLabel64))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
+                        .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(actualizarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actualizarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(166, 166, 166))
         );
         content12Layout.setVerticalGroup(
             content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +126,9 @@ public class Actualizar extends javax.swing.JFrame {
                 .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel64)
                     .addComponent(actualizarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(242, 242, 242)
+                .addGap(176, 176, 176)
+                .addComponent(botonActualizar)
+                .addGap(43, 43, 43)
                 .addComponent(botonAgregar)
                 .addGap(83, 83, 83))
         );
@@ -239,6 +254,16 @@ public class Actualizar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
+               Connection con = crud.getConexion();  
+        if (con != null) {
+            lista.ejecutarInstrucciones(con); 
+            JOptionPane.showMessageDialog(this, "Se elimino ", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_botonActualizarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -280,6 +305,7 @@ public class Actualizar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField actualizarNombre;
     public javax.swing.JTextField actualizarPrecio;
+    private javax.swing.JButton botonActualizar;
     public javax.swing.JButton botonAgregar;
     private javax.swing.JPanel content12;
     private javax.swing.JButton jButton1;

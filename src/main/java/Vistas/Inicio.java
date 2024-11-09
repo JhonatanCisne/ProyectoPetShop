@@ -199,7 +199,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-  Agregar productos = new Agregar();
+   AgregarEliminar productos = new AgregarEliminar();
     productos.setVisible(true);
     this.dispose();
     productos.setLocationRelativeTo(null);  

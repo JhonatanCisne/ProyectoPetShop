@@ -205,33 +205,32 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        
-    String usuarioingreso = ingresarUsuario.getText();
-    char[] passwordChars = ingresarContraseña.getPassword();
-    String contraseña = new String(passwordChars);
-    
-    Connection con = crud.getConexion(); 
-    Usuario usuarioObjeto = new Usuario(usuarioingreso, contraseña);
-    
-    String sql = "SELECT * FROM administrador WHERE nombre = ? AND contraseña = ?";
-    try (PreparedStatement stmt = con.prepareStatement(sql)) {
-        stmt.setString(1, usuarioObjeto.getUsuario());
-        stmt.setString(2, usuarioObjeto.getContraseña());
-        usuarioObjeto.mostrar();
-        
-        ResultSet rs = stmt.executeQuery();
-        
-        if (rs.next()) {
-            AgregarEliminar productos = new AgregarEliminar();
-            productos.setVisible(true);
-            this.dispose();
-            productos.setLocationRelativeTo(null);
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error de conexión: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+  String usuarioingreso = ingresarUsuario.getText();
+char[] passwordChars = ingresarContraseña.getPassword();
+String contraseña = new String(passwordChars);
+
+Connection con = crud.getConexion(); 
+
+String sql = "SELECT * FROM administrador WHERE nombre = ? AND contraseña = ?";
+try (PreparedStatement stmt = con.prepareStatement(sql)) {
+    stmt.setString(1, usuarioingreso);
+    stmt.setString(2, contraseña);
+
+    ResultSet rs = stmt.executeQuery();
+
+    if (rs.next()) {
+        AgregarEliminar productos = new AgregarEliminar();
+        productos.setUsuario(usuarioingreso);  
+        productos.setVisible(true); 
+        this.dispose();          
+    } else {
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
     }
+} catch (SQLException e) {
+    JOptionPane.showMessageDialog(this, "Error de conexión: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+}
+                         
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

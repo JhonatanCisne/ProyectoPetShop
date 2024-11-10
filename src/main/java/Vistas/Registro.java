@@ -4,7 +4,9 @@ import Modelo.crud;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -20,118 +22,19 @@ public class Registro extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        content12 = new javax.swing.JPanel();
-        jLabel61 = new javax.swing.JLabel();
-        jLabel63 = new javax.swing.JLabel();
-        jLabel64 = new javax.swing.JLabel();
-        botonAgregar = new javax.swing.JButton();
-        actualizarNombre = new javax.swing.JTextField();
-        actualizarPrecio = new javax.swing.JTextField();
-        botonActualizar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Registro = new javax.swing.JTable();
+        Cargar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1150, 620));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
-
-        content12.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel61.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel61.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel61.setText("Nombre:");
-
-        jLabel63.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel63.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-
-        jLabel64.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel64.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel64.setText("Precio:");
-
-        botonAgregar.setBackground(new java.awt.Color(204, 255, 255));
-        botonAgregar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        botonAgregar.setText("ACTUALIZAR");
-        botonAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonAgregarMouseClicked(evt);
-            }
-        });
-        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgregarActionPerformed(evt);
-            }
-        });
-
-        actualizarNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actualizarNombreActionPerformed(evt);
-            }
-        });
-
-        actualizarPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actualizarPrecioActionPerformed(evt);
-            }
-        });
-
-        botonActualizar.setText("jButton6");
-        botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonActualizarMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout content12Layout = new javax.swing.GroupLayout(content12);
-        content12.setLayout(content12Layout);
-        content12Layout.setHorizontalGroup(
-            content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonAgregar)
-                .addGap(341, 341, 341))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
-                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(content12Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonActualizar))
-                    .addGroup(content12Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel63)
-                        .addGap(63, 63, 63)
-                        .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel61)
-                            .addComponent(jLabel64))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
-                        .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(actualizarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(actualizarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(166, 166, 166))
-        );
-        content12Layout.setVerticalGroup(
-            content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(content12Layout.createSequentialGroup()
-                .addGap(0, 102, Short.MAX_VALUE)
-                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
-                        .addComponent(jLabel61)
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
-                        .addComponent(actualizarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)))
-                .addComponent(jLabel63)
-                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel64)
-                    .addComponent(actualizarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(176, 176, 176)
-                .addComponent(botonActualizar)
-                .addGap(43, 43, 43)
-                .addComponent(botonAgregar)
-                .addGap(83, 83, 83))
-        );
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -178,14 +81,44 @@ public class Registro extends javax.swing.JFrame {
         jButton5.setText("Eliminar");
         jButton5.setBorderPainted(false);
 
+        Registro.setBackground(new java.awt.Color(255, 255, 255));
+        Registro.setForeground(new java.awt.Color(0, 0, 0));
+        Registro.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Usuario", "Producto", "Cantidad"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(Registro);
+
+        Cargar.setText("jButton6");
+        Cargar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CargarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton5)
@@ -195,8 +128,14 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(content12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 969, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(Cargar)))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,9 +147,11 @@ public class Registro extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(content12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(Cargar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,34 +176,63 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void actualizarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarNombreActionPerformed
- 
-    }//GEN-LAST:event_actualizarNombreActionPerformed
-
-    private void actualizarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarPrecioActionPerformed
-    }//GEN-LAST:event_actualizarPrecioActionPerformed
-
-    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAgregarActionPerformed
-
-    private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
-  
-    }//GEN-LAST:event_botonAgregarMouseClicked
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
-               Connection con = crud.getConexion();  
-        if (con != null) {
-            lista.ejecutarInstrucciones(con); 
-            JOptionPane.showMessageDialog(this, "Se elimino ", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+    private void CargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CargarMouseClicked
+    String sql = "SELECT " +
+                 "r.id_registro AS ID, " +
+                 "a.nombre AS Usuario, " +
+                 "pn.nombreprod AS Producto, " +
+                 "r.cantidad AS Cantidad " +
+                 "FROM registro r " +
+                 "JOIN administrador a ON r.usuario = a.usuario " +
+                 "JOIN Producto p ON r.id_producto = p.id_producto " +
+                 "JOIN Producto_Nombre pn ON p.id_nombreprod = pn.id_nombreprod";
+    
+    String[] columnas = {"ID", "Usuario", "Producto", "Cantidad"};
+    DefaultTableModel modeloTabla = new DefaultTableModel(null, columnas);
+    
+    Registro.setModel(modeloTabla);
+    
+    Connection con = crud.getConexion();
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+
+    try {
+        
+        stmt = con.prepareStatement(sql);
+        
+        rs = stmt.executeQuery();
+
+        modeloTabla.setRowCount(0);
+
+        while (rs.next()) {
+            Object[] fila = {
+                rs.getInt("ID"),       
+                rs.getString("Usuario"), 
+                rs.getString("Producto"), 
+                rs.getString("Cantidad"),  
+
+            };
+
+            modeloTabla.addRow(fila);
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    }//GEN-LAST:event_botonActualizarMouseClicked
+
+    }//GEN-LAST:event_CargarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -307,19 +277,14 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField actualizarNombre;
-    public javax.swing.JTextField actualizarPrecio;
-    private javax.swing.JButton botonActualizar;
-    public javax.swing.JButton botonAgregar;
-    private javax.swing.JPanel content12;
+    private javax.swing.JButton Cargar;
+    public javax.swing.JTable Registro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

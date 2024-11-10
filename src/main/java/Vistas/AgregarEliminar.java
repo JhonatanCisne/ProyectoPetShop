@@ -1,14 +1,9 @@
 package Vistas;
 import Controlador.ListaEnlazada;
-import Controlador.Usuario;
 import Modelo.crud;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 
@@ -18,31 +13,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
   public void setUsuario(String admin){
       this.usuario=admin;
   }
-    
-    /*public String usuario;
-
-    public AgregarEliminar( ) {
-        this.usuario = getUsuario();
-
-        System.out.println("Usuario: " + this.usuario);
-    }
-
-    public void recibir(Usuario usuarioObjeto){
-        this.usuario = usuarioObjeto.getUsuario();
-
-        System.out.println("Usuario (recibido): " + this.usuario);
-    }
-
-    public String getUsuario() {
-        return this.usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }*/
-
-
-    
+  
         private ListaEnlazada lista = new ListaEnlazada();
         public AgregarEliminar() {
         initComponents();
@@ -63,7 +34,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
         modificarAgregar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -180,6 +151,11 @@ public class AgregarEliminar extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Lista");
         jButton3.setBorderPainted(false);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -197,14 +173,19 @@ public class AgregarEliminar extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Actualizar");
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setBackground(new java.awt.Color(0, 153, 153));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setBorderPainted(false);
+        btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnActualizarMouseClicked(evt);
+            }
+        });
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -229,7 +210,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnActualizar)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(294, 294, 294)
@@ -245,7 +226,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton1)
                     .addComponent(jButton5)
-                    .addComponent(jButton2))
+                    .addComponent(btnActualizar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(content12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -280,9 +261,9 @@ public class AgregarEliminar extends javax.swing.JFrame {
     private void CantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadActionPerformed
     }//GEN-LAST:event_CantidadActionPerformed
        
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void modificarGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarGuardarMouseClicked
     Connection con = crud.getConexion();
@@ -300,48 +281,47 @@ public class AgregarEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_modificarGuardarMouseClicked
 
     private void modificarEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarEliminarMouseClicked
+        Inicio ini=new Inicio();
+String nombre = modificarNombre.getText().trim();  
+String cantidades = Cantidad.getText().trim();  
+String admin = usuario;
+System.out.println(admin);
 
-        String nombre = Cantidad.getText().trim();
-        String nombreAdmin= usuario;
-    if (!nombre.isEmpty()) {
+
+if (!nombre.isEmpty() && !cantidades.isEmpty()) {
     try {
-        int cantidad = Integer.parseInt(Cantidad.getText());
-        
+        int cantidad = Integer.parseInt(cantidades);  
+
+
         if (cantidad <= 0) {
             JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
+        String sqlActualizarProducto = "UPDATE Producto " +
+                                       "SET cantidad = cantidad - " + cantidades + " " +
+                                       "WHERE id_nombreprod = (SELECT id_nombreprod FROM Producto_Nombre WHERE nombreprod = '" + nombre + "')";
         
-        // Obtener la conexión
-        Connection con = crud.getConexion();
-        
-        if (con != null) {
-            String sql = "{CALL sp_restar_producto(?, ?, ?)}"; 
-            try (PreparedStatement stmt = con.prepareStatement(sql)) {
-                // Establecer los parámetros
-                stmt.setString(1, nombre);    
-                stmt.setInt(2, cantidad);     
-                stmt.setString(3, nombreAdmin); 
-                
-                // Ejecutar el procedimiento
-                stmt.executeUpdate();
-                
-                // Mostrar un mensaje de éxito
-                JOptionPane.showMessageDialog(this, "Producto modificado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            } catch (SQLException e) {
-                // En caso de error con el procedimiento
-                JOptionPane.showMessageDialog(this, "Error al ejecutar el procedimiento", "Error", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+         String sqlInsertRegistro = "INSERT INTO registro (usuario, id_producto, cantidad) " +
+                                   "VALUES (" +
+                                   "(SELECT usuario FROM Administrador WHERE nombre = '" + this.usuario + "'), " +
+                                   "(SELECT id_producto FROM Producto WHERE id_nombreprod = " +
+                                   "(SELECT id_nombreprod FROM Producto_Nombre WHERE nombreprod = '" + nombre + "')), " +
+                                   cantidad + ")";
+
+        lista.addInstruccion(sqlInsertRegistro);
+        lista.addInstruccion(sqlActualizarProducto); 
+
+        JOptionPane.showMessageDialog(this, "Indicación enlistada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 } else {
-    JOptionPane.showMessageDialog(this, "Ingrese el nombre del producto", "Error", JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this, "Ingrese el nombre del producto y la cantidad.", "Error", JOptionPane.ERROR_MESSAGE);
 }
+
+                                                
 
             
     }//GEN-LAST:event_modificarEliminarMouseClicked
@@ -352,7 +332,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
 
     private void modificarAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarAgregarMouseClicked
 Inicio ini=new Inicio();
- String nombre = modificarNombre.getText().trim();  
+String nombre = modificarNombre.getText().trim();  
 String cantidades = Cantidad.getText().trim();  
 String admin = usuario;
 System.out.println(admin);
@@ -382,7 +362,7 @@ if (!nombre.isEmpty() && !cantidades.isEmpty()) {
         lista.addInstruccion(sqlInsertRegistro);
         lista.addInstruccion(sqlActualizarProducto); 
 
-        JOptionPane.showMessageDialog(this, "Instrucción almacenada correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Indicación enlistada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -392,6 +372,19 @@ if (!nombre.isEmpty() && !cantidades.isEmpty()) {
 }
 
     }//GEN-LAST:event_modificarAgregarMouseClicked
+
+    private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseClicked
+        Actualizar ac=new Actualizar();
+        ac.setUsuario(usuario);  
+        ac.setVisible(true); 
+        this.dispose();     
+    }//GEN-LAST:event_btnActualizarMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        Lista lista=new Lista();
+        lista.setVisible(true); 
+        this.dispose();   
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -432,9 +425,9 @@ if (!nombre.isEmpty() && !cantidades.isEmpty()) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField Cantidad;
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JPanel content12;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel61;

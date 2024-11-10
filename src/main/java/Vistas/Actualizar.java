@@ -9,7 +9,13 @@ import java.sql.SQLException;
 
 
 public class Actualizar extends javax.swing.JFrame {
-    private ListaEnlazada lista = new ListaEnlazada();
+      private String usuario;
+  
+  public void setUsuario(String admin){
+      this.usuario=admin;
+  }
+  
+        private ListaEnlazada lista = new ListaEnlazada();
     public Actualizar() {
         initComponents();
     }
@@ -247,7 +253,36 @@ public class Actualizar extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
-  
+        Inicio ini=new Inicio();
+String nombre = actualizarNombre.getText().trim();  
+String precio = actualizarPrecio.getText().trim();  
+
+
+if (!nombre.isEmpty() && !precio.isEmpty()) {
+    try {
+        int precionuevo = Integer.parseInt(precio);  
+
+
+        if (precionuevo <= 0) {
+            JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String sqlActualizarPrecio = "UPDATE Producto " +
+                                       "SET precio = " + precionuevo + " " +
+                                       "WHERE id_nombreprod = (SELECT id_nombreprod FROM Producto_Nombre WHERE nombreprod = '" + nombre + "')";
+
+        lista.addInstruccion(sqlActualizarPrecio); 
+
+        JOptionPane.showMessageDialog(this, "Indicación enlistada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+} else {
+    JOptionPane.showMessageDialog(this, "Ingrese el nombre del producto y la cantidad.", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     }//GEN-LAST:event_botonAgregarMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

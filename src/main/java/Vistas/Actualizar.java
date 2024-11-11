@@ -3,24 +3,16 @@ import Controlador.ListaEnlazada;
 import Modelo.crud;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-
 
 public class Actualizar extends javax.swing.JFrame {
       private String usuario;
-  
-  public void setUsuario(String admin){
+      public void setUsuario(String admin){
       this.usuario=admin;
-  }
-  
-        private ListaEnlazada lista = new ListaEnlazada();
+      }
+    private ListaEnlazada lista = new ListaEnlazada();
     public Actualizar() {
         initComponents();
     }
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -34,11 +26,10 @@ public class Actualizar extends javax.swing.JFrame {
         actualizarNombre = new javax.swing.JTextField();
         actualizarPrecio = new javax.swing.JTextField();
         botonActualizar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botonLista = new javax.swing.JButton();
+        botonRegistro = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        botonAgregarEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1150, 620));
@@ -139,25 +130,35 @@ public class Actualizar extends javax.swing.JFrame {
                 .addGap(83, 83, 83))
         );
 
-        jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Lista");
-        jButton3.setBorderPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botonLista.setBackground(new java.awt.Color(0, 153, 153));
+        botonLista.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        botonLista.setForeground(new java.awt.Color(255, 255, 255));
+        botonLista.setText("Lista");
+        botonLista.setBorderPainted(false);
+        botonLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonListaMouseClicked(evt);
+            }
+        });
+        botonLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botonListaActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registro");
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonRegistro.setBackground(new java.awt.Color(0, 153, 153));
+        botonRegistro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        botonRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        botonRegistro.setText("Registro");
+        botonRegistro.setBorderPainted(false);
+        botonRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistroMouseClicked(evt);
+            }
+        });
+        botonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonRegistroActionPerformed(evt);
             }
         });
 
@@ -172,17 +173,16 @@ public class Actualizar extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Agregar");
-        jButton4.setBorderPainted(false);
-
-        jButton5.setBackground(new java.awt.Color(0, 153, 153));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Eliminar");
-        jButton5.setBorderPainted(false);
+        botonAgregarEliminar.setBackground(new java.awt.Color(0, 153, 153));
+        botonAgregarEliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        botonAgregarEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        botonAgregarEliminar.setText("Agregar/Eliminar");
+        botonAgregarEliminar.setBorderPainted(false);
+        botonAgregarEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAgregarEliminarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,15 +192,13 @@ public class Actualizar extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonAgregarEliminar)
+                        .addGap(123, 123, 123)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonLista, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(content12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -209,10 +207,9 @@ public class Actualizar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(7, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
+                    .addComponent(botonLista)
+                    .addComponent(botonRegistro)
+                    .addComponent(botonAgregarEliminar)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(content12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,13 +230,13 @@ public class Actualizar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void botonListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_botonListaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonRegistroActionPerformed
 
     private void actualizarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarNombreActionPerformed
  
@@ -254,35 +251,27 @@ public class Actualizar extends javax.swing.JFrame {
 
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
         Inicio ini=new Inicio();
-String nombre = actualizarNombre.getText().trim();  
-String precio = actualizarPrecio.getText().trim();  
-
-
-if (!nombre.isEmpty() && !precio.isEmpty()) {
-    try {
-        int precionuevo = Integer.parseInt(precio);  
-
-
-        if (precionuevo <= 0) {
-            JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+        String nombre = actualizarNombre.getText().trim();  
+        String precio = actualizarPrecio.getText().trim();  
+        if (!nombre.isEmpty() && !precio.isEmpty()) {
+            try {
+                int precionuevo = Integer.parseInt(precio);  
+                if (precionuevo <= 0) {
+                    JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                 }
+            String sqlActualizarPrecio ="UPDATE Producto " +
+                                                        "SET precio = " + precionuevo + " " +
+                                                        "WHERE id_nombreprod = (SELECT id_nombreprod FROM Producto_Nombre WHERE nombreprod = '" 
+                                                        + nombre + "')";
+            lista.addInstruccion(sqlActualizarPrecio); 
+            JOptionPane.showMessageDialog(this, "Indicación enlistada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre del producto y la cantidad.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        String sqlActualizarPrecio = "UPDATE Producto " +
-                                       "SET precio = " + precionuevo + " " +
-                                       "WHERE id_nombreprod = (SELECT id_nombreprod FROM Producto_Nombre WHERE nombreprod = '" + nombre + "')";
-
-        lista.addInstruccion(sqlActualizarPrecio); 
-
-        JOptionPane.showMessageDialog(this, "Indicación enlistada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-} else {
-    JOptionPane.showMessageDialog(this, "Ingrese el nombre del producto y la cantidad.", "Error", JOptionPane.ERROR_MESSAGE);
-}
-
     }//GEN-LAST:event_botonAgregarMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -290,46 +279,37 @@ if (!nombre.isEmpty() && !precio.isEmpty()) {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
-               Connection con = crud.getConexion();  
+        Connection con = crud.getConexion();  
         if (con != null) {
             lista.ejecutarInstrucciones(con); 
-            JOptionPane.showMessageDialog(this, "Se elimino ", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Edición enlistada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        }
     }//GEN-LAST:event_botonActualizarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Actualizar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Actualizar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Actualizar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Actualizar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void botonAgregarEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarEliminarMouseClicked
+        AgregarEliminar ae=new AgregarEliminar();
+        ae.setUsuario(usuario);  
+        ae.setVisible(true); 
+        this.dispose();     
+    }//GEN-LAST:event_botonAgregarEliminarMouseClicked
 
-        /* Create and display the form */
+    private void botonListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonListaMouseClicked
+        Lista li=new Lista();
+        li.setUsuario(usuario);  
+        li.setVisible(true); 
+        this.dispose();     
+    }//GEN-LAST:event_botonListaMouseClicked
+
+    private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
+        Registro re=new Registro();
+        re.setUsuario(usuario);  
+        re.setVisible(true); 
+        this.dispose();     
+    }//GEN-LAST:event_botonRegistroMouseClicked
+
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Actualizar().setVisible(true);
@@ -342,12 +322,11 @@ if (!nombre.isEmpty() && !precio.isEmpty()) {
     public javax.swing.JTextField actualizarPrecio;
     private javax.swing.JButton botonActualizar;
     public javax.swing.JButton botonAgregar;
+    private javax.swing.JButton botonAgregarEliminar;
+    private javax.swing.JButton botonLista;
+    private javax.swing.JButton botonRegistro;
     private javax.swing.JPanel content12;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;

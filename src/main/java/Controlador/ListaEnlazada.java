@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ListaEnlazada {
     private Nodo head;
-
+    
     public ListaEnlazada() {
         head = null;
     }

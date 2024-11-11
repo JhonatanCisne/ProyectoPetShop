@@ -10,7 +10,10 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class Lista extends javax.swing.JFrame {
-    
+      private String usuario;
+      public void setUsuario(String admin){
+      this.usuario=admin;
+        }
     public Lista() {
         initComponents();
     }
@@ -22,10 +25,9 @@ public class Lista extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        botonRegistro = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
+        botonAgregarEliminar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Lista = new javax.swing.JTable();
         Cargar = new javax.swing.JButton();
@@ -46,39 +48,48 @@ public class Lista extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registro");
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonRegistro.setBackground(new java.awt.Color(0, 153, 153));
+        botonRegistro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        botonRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        botonRegistro.setText("Registro");
+        botonRegistro.setBorderPainted(false);
+        botonRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistroMouseClicked(evt);
+            }
+        });
+        botonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonRegistroActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Actualizar");
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonActualizar.setBackground(new java.awt.Color(0, 153, 153));
+        botonActualizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        botonActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        botonActualizar.setText("Actualizar");
+        botonActualizar.setBorderPainted(false);
+        botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonActualizarMouseClicked(evt);
+            }
+        });
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonActualizarActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Agregar");
-        jButton4.setBorderPainted(false);
-
-        jButton5.setBackground(new java.awt.Color(0, 153, 153));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Eliminar");
-        jButton5.setBorderPainted(false);
+        botonAgregarEliminar.setBackground(new java.awt.Color(0, 153, 153));
+        botonAgregarEliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        botonAgregarEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        botonAgregarEliminar.setText("Agregar/Eliminar");
+        botonAgregarEliminar.setBorderPainted(false);
+        botonAgregarEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAgregarEliminarMouseClicked(evt);
+            }
+        });
 
         Lista.setBackground(new java.awt.Color(255, 255, 255));
         Lista.setForeground(new java.awt.Color(0, 0, 0));
@@ -103,7 +114,7 @@ public class Lista extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(Lista);
 
-        Cargar.setText("jButton6");
+        Cargar.setText("Cargar");
         Cargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CargarMouseClicked(evt);
@@ -121,15 +132,13 @@ public class Lista extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 969, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botonAgregarEliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonActualizar)
+                                .addGap(117, 117, 117)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(Cargar)))
@@ -141,10 +150,9 @@ public class Lista extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton2))
+                    .addComponent(botonRegistro)
+                    .addComponent(botonAgregarEliminar)
+                    .addComponent(botonActualizar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -166,77 +174,84 @@ public class Lista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botonActualizarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonRegistroActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void CargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CargarMouseClicked
-                String sql = "SELECT " +
-                 "p.id_producto AS ID, " +
-                 "pn.nombreprod AS Nombre, " +
-                 "tp.tipo AS Tipo, " +
-                 "mp.medida AS Medida, " +
-                 "p.cantidad AS Cantidad, " +
-                 "p.precio AS Precio " +
-                 "FROM Producto p " +
-                 "JOIN Producto_Nombre pn ON p.id_nombreprod = pn.id_nombreprod " +
-                 "JOIN Tipo_Producto tp ON p.id_tipoprod = tp.id_tipoprod " +
-                 "JOIN Medida_Producto mp ON p.id_medidaprod = mp.id_medidaprod";
-    
-    String[] columnas = {"ID", "Nombre", "Tipo", "Medida", "Cantidad", "Precio"};
-    DefaultTableModel modeloTabla = new DefaultTableModel(null, columnas);
-    
-    Lista.setModel(modeloTabla);
-    
-    Connection con = crud.getConexion();
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
-
-    try {
-        
-        stmt = con.prepareStatement(sql);
-        
-        rs = stmt.executeQuery();
-
-        modeloTabla.setRowCount(0);
-
-        while (rs.next()) {
-            Object[] fila = {
-                rs.getInt("ID"),         // ID del producto
-                rs.getString("Nombre"),  // Nombre del producto
-                rs.getString("Tipo"),    // Tipo de producto
-                rs.getString("Medida"),  // Medida del producto
-                rs.getInt("Cantidad"),   // Cantidad disponible
-                rs.getDouble("Precio")   // Precio del producto
-            };
-
+        String sql = "SELECT " +
+        "p.id_producto AS ID, " +
+        "pn.nombreprod AS Nombre, " +
+        "tp.tipo AS Tipo, " +
+        "mp.medida AS Medida, " +
+        "p.cantidad AS Cantidad, " +
+        "p.precio AS Precio " +
+        "FROM Producto p " +
+        "JOIN Producto_Nombre pn ON p.id_nombreprod = pn.id_nombreprod " +
+        "JOIN Tipo_Producto tp ON p.id_tipoprod = tp.id_tipoprod " +
+        "JOIN Medida_Producto mp ON p.id_medidaprod = mp.id_medidaprod";  
+        String[] columnas = {"ID", "Nombre", "Tipo", "Medida", "Cantidad", "Precio"};
+        DefaultTableModel modeloTabla = new DefaultTableModel(null, columnas);  
+        Lista.setModel(modeloTabla);
+        Connection con = crud.getConexion();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {        
+            stmt = con.prepareStatement(sql);        
+            rs = stmt.executeQuery();
+            modeloTabla.setRowCount(0);
+            while (rs.next()) {
+                Object[] fila = {
+                    rs.getInt("ID"), 
+                    rs.getString("Nombre"), 
+                    rs.getString("Tipo"),  
+                    rs.getString("Medida"),  
+                    rs.getInt("Cantidad"),  
+                    rs.getDouble("Precio")  
+                };
             modeloTabla.addRow(fila);
-        }
-
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    } finally {
-        try {
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-            if (con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-        
-         
+            }
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }    
     }//GEN-LAST:event_CargarMouseClicked
+
+    private void botonAgregarEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarEliminarMouseClicked
+        AgregarEliminar ae=new AgregarEliminar();
+        ae.setUsuario(usuario);  
+        ae.setVisible(true); 
+        this.dispose();     
+    }//GEN-LAST:event_botonAgregarEliminarMouseClicked
+
+    private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
+        Actualizar ac=new Actualizar();
+        ac.setUsuario(usuario);  
+        ac.setVisible(true); 
+        this.dispose();     
+    }//GEN-LAST:event_botonActualizarMouseClicked
+
+    private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
+        Registro re=new Registro();
+        re.setUsuario(usuario);  
+        re.setVisible(true); 
+        this.dispose();     
+    }//GEN-LAST:event_botonRegistroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -292,11 +307,10 @@ public class Lista extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cargar;
     public javax.swing.JTable Lista;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonAgregarEliminar;
+    private javax.swing.JButton botonRegistro;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

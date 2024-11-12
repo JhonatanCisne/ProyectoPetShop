@@ -1,5 +1,4 @@
 package Vistas;
-import javax.swing.ImageIcon;
 import Modelo.crud;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

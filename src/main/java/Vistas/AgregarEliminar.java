@@ -52,27 +52,35 @@ public class AgregarEliminar extends javax.swing.JFrame {
         jLabel64.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel64.setText("Cantidad");
 
-        modificarEliminar.setBackground(new java.awt.Color(204, 255, 255));
-        modificarEliminar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        modificarEliminar.setText("ELIMINAR");
+        modificarEliminar.setBackground(new java.awt.Color(0, 153, 153));
+        modificarEliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        modificarEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        modificarEliminar.setText("Eliminar");
         modificarEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 modificarEliminarMouseClicked(evt);
             }
         });
 
+        modificarNombre.setBackground(new java.awt.Color(255, 255, 255));
+        modificarNombre.setForeground(new java.awt.Color(0, 0, 0));
         modificarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modificarNombreActionPerformed(evt);
             }
         });
 
+        Cantidad.setBackground(new java.awt.Color(255, 255, 255));
+        Cantidad.setForeground(new java.awt.Color(0, 0, 0));
         Cantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CantidadActionPerformed(evt);
             }
         });
 
+        modificarGuardar.setBackground(new java.awt.Color(0, 153, 153));
+        modificarGuardar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        modificarGuardar.setForeground(new java.awt.Color(255, 255, 255));
         modificarGuardar.setText("Guardar");
         modificarGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -95,26 +103,28 @@ public class AgregarEliminar extends javax.swing.JFrame {
         content12.setLayout(content12Layout);
         content12Layout.setHorizontalGroup(
             content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
+            .addGroup(content12Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jLabel63)
-                .addGap(63, 63, 63)
-                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel61)
-                    .addComponent(jLabel64))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(modificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(166, 166, 166))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(modificarEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
-                .addComponent(modificarAgregar)
-                .addGap(114, 114, 114)
-                .addComponent(modificarGuardar)
-                .addGap(158, 158, 158))
+                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(modificarEliminar)
+                    .addGroup(content12Layout.createSequentialGroup()
+                        .addComponent(jLabel63)
+                        .addGap(63, 63, 63)
+                        .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel61)
+                            .addComponent(jLabel64))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
+                        .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(modificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(166, 166, 166))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
+                        .addComponent(modificarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modificarGuardar)
+                        .addGap(45, 45, 45))))
         );
         content12Layout.setVerticalGroup(
             content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,12 +228,12 @@ public class AgregarEliminar extends javax.swing.JFrame {
                         .addComponent(listaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(listaBoton)
                     .addComponent(botonRegistro)

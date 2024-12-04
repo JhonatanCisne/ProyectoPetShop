@@ -50,6 +50,28 @@ public class ListaEnlazada {
         }
     }
 
+public void eliminarUltimoNodo() {
+    if (head == null || head.next == null) {
+        head = null;
+        return;
+    }
+    Nodo current = head;
+    while (current.next != null && current.next.next != null) {
+        current = current.next;
+    }
+    current.next = null;
+    if (current != head) {
+        Nodo temp = head;
+        while (temp.next != current) {
+            temp = temp.next;
+        }
+        temp.next = null;
+    }
+}
+
+
+
+
     private class Nodo {
         String instruccionSQL;  
         Nodo next;

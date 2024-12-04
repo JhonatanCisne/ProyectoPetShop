@@ -3,6 +3,7 @@ import Controlador.ListaEnlazada;
 import Modelo.crud;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public class AgregarEliminar extends javax.swing.JFrame {
   private String usuario;
@@ -10,6 +11,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
       this.usuario=admin;
   }
         private ListaEnlazada lista = new ListaEnlazada();
+        ArrayList<String> productos = new ArrayList<>();
         public AgregarEliminar() {
             initComponents();
             setLocationRelativeTo(null);
@@ -29,6 +31,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
         Cantidad = new javax.swing.JTextField();
         modificarGuardar = new javax.swing.JButton();
         modificarAgregar = new javax.swing.JButton();
+        Ver = new javax.swing.JButton();
         listaBoton = new javax.swing.JButton();
         botonRegistro = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
@@ -99,6 +102,17 @@ public class AgregarEliminar extends javax.swing.JFrame {
             }
         });
 
+        Ver.setBackground(new java.awt.Color(0, 153, 153));
+        Ver.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Ver.setForeground(new java.awt.Color(255, 255, 255));
+        Ver.setText("Ver");
+        Ver.setBorderPainted(false);
+        Ver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VerMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout content12Layout = new javax.swing.GroupLayout(content12);
         content12.setLayout(content12Layout);
         content12Layout.setHorizontalGroup(
@@ -113,16 +127,19 @@ public class AgregarEliminar extends javax.swing.JFrame {
                         .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel61)
                             .addComponent(jLabel64))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
-                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
+                .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(content12Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                         .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(modificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(166, 166, 166))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content12Layout.createSequentialGroup()
+                    .addGroup(content12Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
                         .addComponent(modificarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Ver, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
                         .addComponent(modificarGuardar)
                         .addGap(45, 45, 45))))
         );
@@ -149,7 +166,8 @@ public class AgregarEliminar extends javax.swing.JFrame {
                         .addGroup(content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(modificarEliminar)
                             .addComponent(modificarGuardar)
-                            .addComponent(modificarAgregar))
+                            .addComponent(modificarAgregar)
+                            .addComponent(Ver))
                         .addGap(91, 91, 91))))
         );
 
@@ -281,6 +299,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
         Connection con = crud.getConexion();
         if (con != null) {
             lista.ejecutarInstrucciones(con);
+            productos.clear();
             JOptionPane.showMessageDialog(this, "Se modificaron los productos", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             lista = new ListaEnlazada(); 
          } else {
@@ -312,6 +331,8 @@ public class AgregarEliminar extends javax.swing.JFrame {
                                    cantidad + ")";
             lista.addInstruccion(sqlInsertRegistro);
             lista.addInstruccion(sqlActualizarProducto); 
+            int cantidadArray=cantidad-(cantidad*2);
+            productos.add("Producto: " + nombre + ", Cantidad: " + cantidadArray);
             JOptionPane.showMessageDialog(this, "Indicación enlistada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -350,6 +371,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
                                    cantidad + ")";
             lista.addInstruccion(sqlInsertRegistro);
             lista.addInstruccion(sqlActualizarProducto); 
+            productos.add("Producto: " + nombre + ", Cantidad: " + cantidad);
             JOptionPane.showMessageDialog(this, "Indicación enlistada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(this, "Ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -379,6 +401,27 @@ public class AgregarEliminar extends javax.swing.JFrame {
         registro.setVisible(true); 
         this.dispose();   
     }//GEN-LAST:event_botonRegistroMouseClicked
+
+    private void VerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerMouseClicked
+    Inicio ini = new Inicio();
+    if (productos.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No hay productos registrados.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        StringBuilder sb = new StringBuilder();
+        for (String producto : productos) {
+            sb.append(producto).append("\n");
+        }
+        int option = JOptionPane.showConfirmDialog(this, sb.toString() + "\nEliminar última instrucción", 
+                                                   "Eliminar última instrucción", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (option == JOptionPane.YES_OPTION) {
+            lista.eliminarUltimoNodo();
+            if (!productos.isEmpty()) {
+                productos.remove(productos.size() - 1);
+            }
+            JOptionPane.showMessageDialog(this, "última instrucción eliminados.", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_VerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -419,6 +462,7 @@ public class AgregarEliminar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField Cantidad;
+    public javax.swing.JButton Ver;
     private javax.swing.JButton botonRegistro;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JPanel content12;
